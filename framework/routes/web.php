@@ -23,5 +23,15 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>'list_type'
     ]);
 
+    Route::get('add-type',[
+        'uses'=>'AdminController@getAddType',
+        'as'=>'addType'
+    ]);
+    
+    Route::post('add-type',[
+        'uses'=>'AdminController@postAddType',
+        'as'=>'addType'
+    ]);
+
 });
 

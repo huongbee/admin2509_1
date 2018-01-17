@@ -11,4 +11,8 @@ class AdminController extends Controller
         $types = FoodType::paginate(5);
         return view('pages.list-type',compact('types'));
     }
+
+    function getAddType(){
+        return view('pages/add-type');
+    }
 }

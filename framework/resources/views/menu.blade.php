@@ -1,0 +1,31 @@
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <li>
+                <a class="active" href="./">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="google_maps.html" >
+                    <i class="fa fa-map-marker"></i>
+                    <span>Thêm loại sản phẩm</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class=" fa fa-envelope"></i>
+                    <span>Mail</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="inbox.html">Inbox</a></li>
+                    <li><a  href="inbox_details.html">Inbox Details</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>

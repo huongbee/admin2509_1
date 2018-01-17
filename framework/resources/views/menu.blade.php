@@ -14,10 +14,22 @@
                     <span>Thêm loại sản phẩm</span>
                 </a>
             </li>
+            <li>
+                <a href="google_maps.html" >
+                    <i class="fa fa-map-marker"></i>
+                    <span>Danh sách loại</span>
+                </a>
+            </li>
+            <li>
+                <a href="google_maps.html" >
+                    <i class="fa fa-map-marker"></i>
+                    <span>Thêm sản phẩm</span>
+                </a>
+            </li>
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class=" fa fa-envelope"></i>
-                    <span>Mail</span>
+                    <span>Danh sách SP theo loại</span>
                 </a>
                 <ul class="sub">
                     <li><a  href="inbox.html">Inbox</a></li>

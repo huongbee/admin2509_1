@@ -29,7 +29,8 @@
 
     <link href="admin/css/style.css" rel="stylesheet">
     <link href="admin/css/style-responsive.css" rel="stylesheet" />
-
+    <script src="admin/ckeditor/ckeditor.js"></script>
+    <script src="admin/ckfinder/ckfinder.js"></script>
 </head>
 <body>
     <section id="container">

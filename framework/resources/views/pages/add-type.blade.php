@@ -19,7 +19,10 @@
                         <div class="form-group">
                             <label class="col-sm-2">Mô tả:</label>
                             <div class="col-sm-10">
-                                <textarea name="description" class="form-control" ></textarea></textarea>
+                                <textarea name="description" class="form-control" id="desc"></textarea>
+                                <script>
+                                    CKEDITOR.replace('desc')
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">

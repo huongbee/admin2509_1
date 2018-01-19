@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     protected $table = 'foods';
+    public $timestamps = false;
 
     //1-1
     function PageUrl(){

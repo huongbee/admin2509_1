@@ -7,6 +7,9 @@
                     <b>Danh sách loại</b>
                 </div>
                 <div class="panel-body">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success">{{Session::get('message')}}</div>
+                    @endif
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -23,7 +26,7 @@
                             <tr>
                                 <td>{{$stt++}}</td>
                                 <td>{{$t->name}}</td>
-                                <td>{{$t->description}}</td>
+                                <td><?=$t->description?></td>
                                 <td>
                                     <img src="admin/img/hinh_loai_mon_an/{{$t->image}}" style="height:80px">
                                 </td>

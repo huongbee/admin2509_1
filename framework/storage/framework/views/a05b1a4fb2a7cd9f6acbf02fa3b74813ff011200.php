@@ -7,6 +7,9 @@
                     <b>Danh sách loại</b>
                 </div>
                 <div class="panel-body">
+                    <?php if(Session::has('message')): ?>
+                    <div class="alert alert-success"><?php echo e(Session::get('message')); ?></div>
+                    <?php endif; ?>
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -23,7 +26,7 @@
                             <tr>
                                 <td><?php echo e($stt++); ?></td>
                                 <td><?php echo e($t->name); ?></td>
-                                <td><?php echo e($t->description); ?></td>
+                                <td><?=$t->description?></td>
                                 <td>
                                     <img src="admin/img/hinh_loai_mon_an/<?php echo e($t->image); ?>" style="height:80px">
                                 </td>

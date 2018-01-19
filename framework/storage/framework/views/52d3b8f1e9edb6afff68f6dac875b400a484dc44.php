@@ -9,19 +9,19 @@
                 </a>
             </li>
             <li>
-                <a href="google_maps.html" >
+                <a href="<?php echo e(route('addType')); ?>" >
                     <i class="fa fa-map-marker"></i>
                     <span>Thêm loại sản phẩm</span>
                 </a>
             </li>
             <li>
-                <a href="google_maps.html" >
+                <a href="<?php echo e(route('list_type')); ?>" >
                     <i class="fa fa-map-marker"></i>
                     <span>Danh sách loại</span>
                 </a>
             </li>
             <li>
-                <a href="google_maps.html" >
+                <a href="" >
                     <i class="fa fa-map-marker"></i>
                     <span>Thêm sản phẩm</span>
                 </a>

@@ -38,4 +38,22 @@ class AdminController extends Controller
         $type = FoodType::where('id',$id)->first();
         return view('pages/edit',compact('type'));
     }
+    function postEditType(Request $req){
+        $type = FoodType::where('id',$req->id)->first(); //get
+        if($type){
+            $type->name = $req->name;
+            $type->description = $req->description;
+
+            if($req->hasFile('image')){
+                $hinh = $req->file('image');
+                $nameImg = date('Y-m-d-H-i-s').'-'.$hinh->getClientOriginalName();
+                $hinh->move('admin/img/hinh_loai_mon_an',$nameImg);
+            
+                $type->image = $nameImg;
+            }
+            $type->save();
+            return redirect()->route('list_type')->with('message','Sửa thành công');
+        } 
+        return redirect()->back()->with('message','Không tìm thấy loại sp');
+    }
 }

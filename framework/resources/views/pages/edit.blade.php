@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10 col-sm-offset-2">
-                                <input type="file" name="image" required>
+                                <input type="file" name="image">
                                 <img src="admin/img/hinh_loai_mon_an/{{$type->image}}" style="height:100px">
                             </div>
                         </div>

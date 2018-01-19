@@ -25,7 +25,7 @@
                             @foreach($types as $t)
                             <tr>
                                 <td>{{$stt++}}</td>
-                                <td>{{$t->name}}</td>
+                                <td class="name-{{$t->id}}">{{$t->name}}</td>
                                 <td><?=$t->description?></td>
                                 <td>
                                     <img src="admin/img/hinh_loai_mon_an/{{$t->image}}" style="height:80px">
@@ -33,7 +33,7 @@
                                 <td>
                                     <a style=" padding-bottom:10px" href="{{route('editType',$t->id)}}"><button class="btn btn-warning btn-sm" style="width:100%;">Edit</button></a>
                                     <br><br>
-                                    <button class="btn btn-primary btn-sm">Delete</button>
+                                    <button class="btn btn-primary btn-sm btn-call-modal" data-id="{{$t->id}}">Delete</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -59,4 +59,11 @@
     </div>
   </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.btn-call-modal').click(function(){
+            $('#myModal').modal('show')
+        })
+    })
+</script>
 @endsection

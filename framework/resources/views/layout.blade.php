@@ -31,6 +31,7 @@
     <link href="admin/css/style-responsive.css" rel="stylesheet" />
     <script src="admin/ckeditor/ckeditor.js"></script>
     <script src="admin/ckfinder/ckfinder.js"></script>
+    <script src="admin/js/jquery.js"></script>
 </head>
 <body>
     <section id="container">
@@ -59,7 +60,7 @@
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="admin/js/jquery.js"></script>
+    
     <script src="admin/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="admin/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="admin/js/jquery.scrollTo.min.js"></script>

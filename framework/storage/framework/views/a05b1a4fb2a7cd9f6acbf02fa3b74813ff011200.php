@@ -31,8 +31,9 @@
                                     <img src="admin/img/hinh_loai_mon_an/<?php echo e($t->image); ?>" style="height:80px">
                                 </td>
                                 <td>
-                                    <a href="<?php echo e(route('editType',$t->id)); ?>">Edit</a>
-                                     | Delete
+                                    <a style=" padding-bottom:10px" href="<?php echo e(route('editType',$t->id)); ?>"><button class="btn btn-warning btn-sm" style="width:100%;">Edit</button></a>
+                                    <br><br>
+                                    <button class="btn btn-primary btn-sm">Delete</button>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -45,5 +46,19 @@
         </section>
     </div>
 </section>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Bạn có chắc chắn xoá <span class="nameObj">...</span> không?</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success">OK</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

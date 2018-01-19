@@ -31,7 +31,8 @@
                                     <img src="admin/img/hinh_loai_mon_an/{{$t->image}}" style="height:80px">
                                 </td>
                                 <td>
-                                    Edit | Delete
+                                    <a href="{{route('editType',$t->id)}}">Edit</a>
+                                     | Delete
                                 </td>
                             </tr>
                             @endforeach

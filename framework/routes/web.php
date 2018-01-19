@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>'editType'
     ]);
     
-    Route::post('edit-type',[
+    Route::post('edit-type-{id}',[
         'uses'=>'AdminController@postEditType',
         'as'=>'editType'
     ]);

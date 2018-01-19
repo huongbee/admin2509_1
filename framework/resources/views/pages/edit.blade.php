@@ -6,13 +6,13 @@
         <section class="content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <b>Sửa thông tin loại {{$type->name}}</b>
+                    <b>Sửa thông tin loại <span style="color:blue">{{$type->name}}</span></b>
                 </div>
                 <div class="panel-body">
                     @if(Session::has('message'))
                     <div class="alert alert-danger">{{Session::get('message')}}</div>
                     @endif
-                    <form action="{{route('editType')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="{{route('editType',$type->id)}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label class="col-sm-2">Tên:</label>

@@ -31,7 +31,8 @@
                                     <img src="admin/img/hinh_loai_mon_an/<?php echo e($t->image); ?>" style="height:80px">
                                 </td>
                                 <td>
-                                    Edit | Delete
+                                    <a href="<?php echo e(route('editType',$t->id)); ?>">Edit</a>
+                                     | Delete
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

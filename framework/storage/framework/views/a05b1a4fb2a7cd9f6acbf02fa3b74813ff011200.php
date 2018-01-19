@@ -25,7 +25,7 @@
                             <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($stt++); ?></td>
-                                <td><?php echo e($t->name); ?></td>
+                                <td class="name-<?php echo e($t->id); ?>"><?php echo e($t->name); ?></td>
                                 <td><?=$t->description?></td>
                                 <td>
                                     <img src="admin/img/hinh_loai_mon_an/<?php echo e($t->image); ?>" style="height:80px">
@@ -33,7 +33,7 @@
                                 <td>
                                     <a style=" padding-bottom:10px" href="<?php echo e(route('editType',$t->id)); ?>"><button class="btn btn-warning btn-sm" style="width:100%;">Edit</button></a>
                                     <br><br>
-                                    <button class="btn btn-primary btn-sm btn-call-modal">Delete</button>
+                                    <button class="btn btn-primary btn-sm btn-call-modal" data-id="<?php echo e($t->id); ?>">Delete</button>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -64,6 +64,9 @@
     $(document).ready(function(){
         $('.btn-call-modal').click(function(){
             $('#myModal').modal('show')
+            var id = $(this).attr('data-id')
+            var name = $('.name-'+id).text();
+            $('.nameObj').html("<b>"+name+"</b>");
         })
     })
 </script>

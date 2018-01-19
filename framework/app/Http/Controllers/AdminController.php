@@ -34,4 +34,8 @@ class AdminController extends Controller
 
         
     }   
+    function getEditType($id){
+        $type = FoodType::where('id',$id)->first();
+        return view('pages/edit',compact('type'));
+    }
 }

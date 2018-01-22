@@ -61,13 +61,14 @@ class AdminController extends Controller
     function getDeleteType(Request $req){
         $id_type = $req->id;
         //kiem tra co mon an thuoc loai hay khong?
-        $foods = Food::where('id_type',$id_type)->get();
-        if($foods){
-            echo "existfood";
+        $foods = Food::where('id_type',$id_type)->first();
+        if(!empty($foods)){
+           echo "existfood";
         }
         else{
             $type = FoodType::where('id',$id_type)->first();
-            if($type) {
+            //dd($type);
+            if(!empty($type)) {
                 $type->delete();
                 echo "success";
             }

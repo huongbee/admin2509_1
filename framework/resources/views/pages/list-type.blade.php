@@ -23,7 +23,7 @@
                         <tbody>
                             <?php $stt = 1;?>
                             @foreach($types as $t)
-                            <tr>
+                            <tr id="sanpham-{{$t->id}}">
                                 <td>{{$stt++}}</td>
                                 <td class="name-{{$t->id}}">{{$t->name}}</td>
                                 <td><?=$t->description?></td>
@@ -53,32 +53,58 @@
         <p>Bạn có chắc chắn xoá <span class="nameObj">...</span> không?</p>
       </div>
       <div class="modal-footer">
-            <button type="button" class="btn btn-success btnAccept">OK</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success btnAccept">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="Message" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="your-mess"></p>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>
 </div>
 <script>
     $(document).ready(function(){
+        var id =''
         $('.btn-call-modal').click(function(){
             $('#myModal').modal('show')
-            var id = $(this).attr('data-id')
+            id = $(this).attr('data-id')
             var name = $('.name-'+id).text();
             $('.nameObj').html("<b>"+name+"</b>");
-
-            $('.btnAccept').click(function(){
+        })
+        $('.btnAccept').click(function(){
+            if(id!=''){
                 $.ajax({
-                    url:"",
+                    url:"{{route('deleteType')}}",
                     data:{
                         id:id
                     },
                     type:"GET",
                     success:function(data){
-                        console.log('Da xoa')
+                        var mess = "";
+                        $('#myModal').modal('hide')
+                        if($.trim(data)=='existfood'){
+                            mess = "Không thể xoá, tồn tại món ăn"
+                        }
+                        else if($.trim(data)=='success'){
+                            mess = "Xoá thành công";
+                            $('#sanpham-'+id).hide()
+                        }
+                        else mess = "Thất bại, vui lòng thử lại"
+                        $('.your-mess').html(mess)
+                        $('#Message').modal('show')  
                     }  
                 })
-            })
+            }
         })
     })
 </script>

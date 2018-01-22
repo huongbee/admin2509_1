@@ -32,8 +32,9 @@
                     <span>Danh sách SP theo loại</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="inbox.html">Inbox</a></li>
-                    <li><a  href="inbox_details.html">Inbox Details</a></li>
+                    @foreach($type as $t)
+                    <li><a  href="{{route('list_product',$t->id)}}">{{$t->name}}</a></li>
+                    @endforeach
                 </ul>
             </li>
 

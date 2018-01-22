@@ -47,5 +47,12 @@ Route::group(['prefix'=>'admin'],function(){
         'as' => 'deleteType'
     ]);
 
+    Route::get('product-{id_type}',[
+        'uses'=>'AdminController@getProductByType',
+        'as'=>'list_product'
+    ]);
+
+
+
 });
 

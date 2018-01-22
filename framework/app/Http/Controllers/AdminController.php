@@ -77,4 +77,9 @@ class AdminController extends Controller
             }
         }
     }
+    function getProductByType(Request $req){
+        $products = Food::where('id_type',$req->id_type)->paginate(5);
+        return view('pages/list-product',compact('products'));
+
+    }
 }

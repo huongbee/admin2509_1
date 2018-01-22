@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\FoodType;
+use App\Food;
 
 class AdminController extends Controller
 {
@@ -55,5 +56,24 @@ class AdminController extends Controller
             return redirect()->route('list_type')->with('message','Sửa thành công');
         } 
         return redirect()->back()->with('message','Không tìm thấy loại sp');
+    }
+
+    function getDeleteType(Request $req){
+        $id_type = $req->id;
+        //kiem tra co mon an thuoc loai hay khong?
+        $foods = Food::where('id_type',$id_type)->get();
+        if($foods){
+            echo "existfood";
+        }
+        else{
+            $type = FoodType::where('id',$id_type)->first();
+            if($type) {
+                $type->delete();
+                echo "success";
+            }
+            else{
+                echo "error";
+            }
+        }
     }
 }

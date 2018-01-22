@@ -67,6 +67,7 @@
             var id = $(this).attr('data-id')
             var name = $('.name-'+id).text();
             $('.nameObj').html("<b>"+name+"</b>");
+            
         })
     })
 </script>

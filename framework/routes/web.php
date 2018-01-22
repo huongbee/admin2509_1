@@ -42,5 +42,10 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>'editType'
     ]);
 
+    Route::get('delete',[
+        'uses'=>'AdminController@getDeleteType',
+        'as' => 'deleteType'
+    ]);
+
 });
 

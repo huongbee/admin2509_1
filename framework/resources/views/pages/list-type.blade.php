@@ -53,7 +53,7 @@
         <p>Bạn có chắc chắn xoá <span class="nameObj">...</span> không?</p>
       </div>
       <div class="modal-footer">
-            <button type="button" class="btn btn-success">OK</button>
+            <button type="button" class="btn btn-success btnAccept">OK</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -66,6 +66,19 @@
             var id = $(this).attr('data-id')
             var name = $('.name-'+id).text();
             $('.nameObj').html("<b>"+name+"</b>");
+
+            $('.btnAccept').click(function(){
+                $.ajax({
+                    url:"",
+                    data:{
+                        id:id
+                    },
+                    type:"GET",
+                    success:function(data){
+                        console.log('Da xoa')
+                    }  
+                })
+            })
         })
     })
 </script>

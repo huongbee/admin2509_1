@@ -15,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $type = FoodType::all();
-        View::share(['type'=>$type]);
+        $types = FoodType::all();
+        View::share(['types'=>$types]);
     }
 
     /**

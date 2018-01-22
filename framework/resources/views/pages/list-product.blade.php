@@ -6,7 +6,9 @@
         <section class="content">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <b>Danh sách sản phẩm thuộc loại .....</b>
+                    <b>Danh sách sản phẩm thuộc loại 
+                        <span style="color:blue">{{$type->name}}</span>
+                    </b>
                 </div>
                 <div class="panel-body">
                     @if(Session::has('message'))
@@ -90,7 +92,7 @@
         $('.btnAccept').click(function(){
             if(id!=''){
                 $.ajax({
-                    url:"{{route('deleteType')}}",
+                    url:"{{route('deleteFood')}}",
                     data:{
                         id:id
                     },
@@ -98,10 +100,7 @@
                     success:function(data){
                         var mess = "";
                         $('#myModal').modal('hide')
-                        if($.trim(data)=='existfood'){
-                            mess = "Không thể xoá, tồn tại món ăn"
-                        }
-                        else if($.trim(data)=='success'){
+                        if($.trim(data)=='success'){
                             mess = "Xoá thành công";
                             $('#sanpham-'+id).hide()
                         }

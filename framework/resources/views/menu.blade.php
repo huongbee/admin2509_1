@@ -32,7 +32,7 @@
                     <span>Danh sách SP theo loại</span>
                 </a>
                 <ul class="sub">
-                    @foreach($type as $t)
+                    @foreach($types as $t)
                     <li><a  href="{{route('list_product',$t->id)}}">{{$t->name}}</a></li>
                     @endforeach
                 </ul>

@@ -78,8 +78,26 @@ class AdminController extends Controller
         }
     }
     function getProductByType(Request $req){
-        $products = Food::where('id_type',$req->id_type)->paginate(5);
-        return view('pages/list-product',compact('products'));
+        $type = FoodType::select('name')->where('id',$req->id_type)->first();
+        $products = Food::where([
+                    ['id_type','=',$req->id_type],
+                    ['deleted','=',0]
+                    ])
+                    ->orderBy('id','DESC')
+                    ->paginate(5);
+        return view('pages/list-product',compact('products','type'));
 
+    }
+    function getDeleteFood(Request $req){
+        $id = $req->id;
+        $food = Food::where('id',$id)->first();
+        if(!empty($food)) {
+            $food->deleted = 1; //da xoa
+            $food->save();
+            echo "success";
+        }
+        else{
+            echo "error";
+        }
     }
 }

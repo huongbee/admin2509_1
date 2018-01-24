@@ -100,4 +100,9 @@ class AdminController extends Controller
             echo "error";
         }
     }
+
+    function getAddFood(){
+        return view('pages/add-food');
+    }
+
 }

@@ -107,7 +107,12 @@
                         else mess = "Thất bại, vui lòng thử lại"
                         $('.your-mess').html(mess)
                         $('#Message').modal('show')  
-                    }  
+                    } ,
+                    error:function(){
+                        console.log(1212)
+                    } 
+                }).done(function(){
+                    console.log('done!')
                 })
             }
         })

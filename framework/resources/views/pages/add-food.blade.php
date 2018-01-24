@@ -32,7 +32,6 @@
                             <label class="col-sm-2">Mô tả ngắn:</label>
                             <div class="col-sm-10">
                                 <textarea rows="5" class="form-control" name="summary" required></textarea>
-
                             </div>
                         </div>
                         <div class="form-group">

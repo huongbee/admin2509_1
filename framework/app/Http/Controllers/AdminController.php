@@ -150,4 +150,12 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Error!');
     }
 
+    function getEditFood($id){
+        $food = Food::where('id',$id)->first();
+        if($food){
+            return view('pages/edit-food',compact('food'));
+        }
+        return redirect()->back()->with('message','Không tim thấy sản phẩm!');
+    }
+
 }

@@ -68,6 +68,17 @@ Route::group(['prefix'=>'admin'],function(){
     ]);
 
 
+    Route::get('edit-food-{id}',[
+        'uses'=>'AdminController@getEditFood',
+        'as'=>'editFood'
+    ]);
+    
+    Route::post('edit-food-{id}',[
+        'uses'=>'AdminController@postEditFood',
+        'as'=>'editFood'
+    ]);
+
+
 
 });
 

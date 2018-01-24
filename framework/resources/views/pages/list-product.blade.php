@@ -39,7 +39,7 @@
                                     <img src="admin/img/hinh_mon_an/{{$t->image}}" style="height:80px">
                                 </td>
                                 <td>
-                                    <a style=" padding-bottom:10px" href="{{route('editType',$t->id)}}"><button class="btn btn-warning btn-sm" style="width:100%;">Edit</button></a>
+                                    <a style=" padding-bottom:10px" href="{{route('editFood',$t->id)}}"><button class="btn btn-warning btn-sm" style="width:100%;">Edit</button></a>
                                     <br><br>
                                     <button class="btn btn-primary btn-sm btn-call-modal" data-id="{{$t->id}}">Delete</button>
                                 </td>

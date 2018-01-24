@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="" >
+                <a href="<?php echo e(route('addFood')); ?>" >
                     <i class="fa fa-map-marker"></i>
                     <span>Thêm sản phẩm</span>
                 </a>

@@ -31,7 +31,7 @@ class Functions{
         if($str=="") return "";
         $str = str_replace('"', '', $str);
         $str = str_replace("'", '', $str);
-        $str = stripUnicode($str);
+        $str = $this->stripUnicode($str);
         $str = mb_convert_case($str, MB_CASE_LOWER,'utf-8');
         $str = str_replace(' ', '-', $str);
         return $str;

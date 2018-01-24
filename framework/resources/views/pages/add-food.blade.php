@@ -10,7 +10,7 @@
                     @if(Session::has('message'))
                     <div class="alert alert-danger">{{Session::get('message')}}</div>
                     @endif
-                    <form action="{{route('addType')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="{{route('addFood')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label class="col-sm-2">Tên:</label>
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Chọn loại:</label>
                             <div class="col-sm-10">
-                                <select name="promotion" class="form-control">
+                                <select name="type" class="form-control">
                                     @foreach($types as $t)
                                     <option value="{{$t->id}}">{{$t->name}}</option>
                                     @endforeach
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Đơn giá khuyến mãi:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="price" placeholder="Nhập giá khuyến mãi" value="0" required>
+                                <input type="text" class="form-control" name="promotion_price" placeholder="Nhập giá khuyến mãi" value="0" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Trong ngày:</label>
                             <div class="col-sm-10">
-                                <input type="checkbox" name="today" required>
+                                <input type="checkbox" name="today" value='1' required>
                             </div>
                         </div>
                         <div class="form-group">

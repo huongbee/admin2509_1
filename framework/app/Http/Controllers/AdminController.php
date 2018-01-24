@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\FoodType;
 use App\Food;
+use App\PageUrl;
+use App\Functions;
 
 class AdminController extends Controller
 {
@@ -103,6 +105,49 @@ class AdminController extends Controller
 
     function getAddFood(){
         return view('pages/add-food');
+    }
+
+    function postAddFood(Request $req){
+
+        $name = $req->name;
+
+        $function = new Functions;
+        $alias = $function->changeTitle($name);
+
+        $url = new PageUrl;
+        $url->url = $alias;
+        $url->save();
+        if($url->id){
+            $food = new Food;
+            $food->id_type = $req->type;
+            $food->id_url = $url->id;
+            $food->name = $name;
+            $food->summary = $req->summary;
+            $food->detail = $req->detail;
+            $food->price = $req->price;
+            $food->promotion_price = $req->promotion_price;
+            $food->promotion = $req->promotion;
+            if($req->hasFile('image')){
+                $hinh = $req->file('image');
+                $nameImg = date('Y-m-d-H-i-s').'-'.$hinh->getClientOriginalName();
+                $hinh->move('admin/img/hinh_mon_an',$nameImg);
+            
+                $food->image = $nameImg;
+            }
+            else{
+                return redirect()->back()->with('message','Vui lòng chọn ảnh!');
+            }
+            $food->update_at = date('Y-m-d',time());
+            $food->unit = $req->unit;
+            $food->today = $req->today == 1 ? 1 : 0;
+            $food->save();
+            if($food->id){
+                return redirect()->route('list_product',$food->id_type)
+                            ->with('message','Thêm thành công!');
+            }
+            $url->delete();
+        }
+        return redirect()->back()->with('message','Error!');
     }
 
 }

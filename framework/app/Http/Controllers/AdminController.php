@@ -7,6 +7,7 @@ use App\FoodType;
 use App\Food;
 use App\PageUrl;
 use App\Functions;
+use App\Bill;
 
 class AdminController extends Controller
 {
@@ -193,6 +194,16 @@ class AdminController extends Controller
                             ->with('message','Update thành công!');
         }
         return redirect()->back()->with('message','Không tim thấy sản phẩm!');
+    }
+
+    function getManageBill(){
+        $chuaGiao = Bill::where('status',1)
+                    ->with('BillDetail')->get();
+        $daGiao = Bill::where('status',2)
+                    ->with('BillDetail')->get();
+        $chuaXacNhan = Bill::where('status',0)
+                    ->with('BillDetail')->get();
+        return view('pages/manage-bill',compact('chuaGiao','daGiao','chuaXacNhan'));
     }
 
 }

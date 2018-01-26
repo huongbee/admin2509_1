@@ -209,5 +209,5 @@ class AdminController extends Controller
 
         return view('pages/manage-bill',compact('bills'));
     }
-
+//delete from bills where id not in(select distinct(id_bill) from bill_detail)
 }

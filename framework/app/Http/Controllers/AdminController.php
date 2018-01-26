@@ -158,4 +158,41 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Không tim thấy sản phẩm!');
     }
 
+    function postEditFood(Request $req){
+        $food = Food::where('id',$req->id)->first();
+        if($food){
+            $name = $req->name;
+
+            $function = new Functions;
+            $alias = $function->changeTitle($name);
+
+            $url = PageUrl::where('id',$food->id_url)->first();
+            $url->url = $alias;
+            $url->save();
+
+            $food->id_type = $req->type;
+            $food->name = $name;
+            $food->summary = $req->summary;
+            $food->detail = $req->detail;
+            $food->price = $req->price;
+            $food->promotion_price = $req->promotion_price;
+            $food->promotion = $req->promotion;
+            if($req->hasFile('image')){
+                $hinh = $req->file('image');
+                $nameImg = date('Y-m-d-H-i-s').'-'.$hinh->getClientOriginalName();
+                $hinh->move('admin/img/hinh_mon_an',$nameImg);
+            
+                $food->image = $nameImg;
+            }
+            
+            $food->update_at = date('Y-m-d',time());
+            $food->unit = $req->unit;
+            $food->today = $req->today == 1 ? 1 : 0;
+            $food->save();
+            return redirect()->route('list_product',$food->id_type)
+                            ->with('message','Update thành công!');
+        }
+        return redirect()->back()->with('message','Không tim thấy sản phẩm!');
+    }
+
 }

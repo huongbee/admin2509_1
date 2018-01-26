@@ -78,6 +78,10 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>'editFood'
     ]);
 
+    Route::get('manage-bill',[
+        'uses'=>'AdminController@getManageBill',
+        'as'=>"manageBill"
+    ]);
 
 
 });

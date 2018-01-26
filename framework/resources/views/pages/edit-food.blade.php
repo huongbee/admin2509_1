@@ -10,7 +10,7 @@
                     @if(Session::has('message'))
                     <div class="alert alert-danger">{{Session::get('message')}}</div>
                     @endif
-                    <form action="{{route('addFood')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="{{route('editFood',$food->id)}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label class="col-sm-2">Tên:</label>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Trong ngày:</label>
                             <div class="col-sm-10">
-                                <input type="checkbox" name="today" value='1'  @if($food->today==1) checked @endif required>
+                                <input type="checkbox" name="today" value='1'  @if($food->today==1) checked @endif >
                             </div>
                         </div>
                         <div class="form-group">

@@ -10,7 +10,7 @@
                     <?php if(Session::has('message')): ?>
                     <div class="alert alert-danger"><?php echo e(Session::get('message')); ?></div>
                     <?php endif; ?>
-                    <form action="<?php echo e(route('addFood')); ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="<?php echo e(route('editFood',$food->id)); ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 
                         <div class="form-group">
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Trong ngày:</label>
                             <div class="col-sm-10">
-                                <input type="checkbox" name="today" value='1'  <?php if($food->today==1): ?> checked <?php endif; ?> required>
+                                <input type="checkbox" name="today" value='1'  <?php if($food->today==1): ?> checked <?php endif; ?> >
                             </div>
                         </div>
                         <div class="form-group">

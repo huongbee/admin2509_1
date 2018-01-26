@@ -1,5 +1,5 @@
 @extends('layout') @section('title',"Danh sách loại") @section('content')
-
+<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <section class="wrapper">
     <div class="panel panel-body">
         <section class="content">
@@ -21,26 +21,52 @@
                     <!-- Tab panels -->
                     <div class="tab-content card">
                         @foreach($bills as $key=>$bill)
-                        <div class="tab-pane fade in" id="panel{{$key}}" role="tabpanel">
-                            <table class="table table-striped">
+                        <div class="tab-pane fade in @if($key==0) active @endif" id="panel{{$key}}" role="tabpanel">
+                            <table id="example" class="example table table-striped ">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Email</th>
-                                        <th>Sản phẩm - Đơn giá</th>
-                                        <th>Hình</th>
-                                        <th>Chuyển trạng thái</th>
+                                        <th>Email - SDT</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá - Số lượng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $stt =1?> @foreach($bill as $b)
-                                    <tr>
-                                        <td>{{$stt++}}</td>
-                                        <td>Doe</td>
-                                        <td>john@example.com</td>
+                                    <?php $stt =1?> 
+                                    @foreach($bill as $b)
+                                    <tr></tr>
+                                        <td>{{$stt++}} - {{$b->id}}</td>
+                                        <td>{{$b->Customer->name}}</td>
+                                        <td>{{$b->Customer->email}} - {{$b->Customer->phone}}</td>
+                                        <td>{{$b->Customer->address}}</td>
+                                        <td>
+                                            @foreach($b->Foods as $food)
+                                            {{$food->name}}
+                                            <br>
+                                            <img src="admin/img/hinh_mon_an/{{$food->image}}" style="height:80px">
+                                            <hr>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($b->BillDetail as $d)
+                                            {{$d->price}} - {{$d->quantity}}
+                                            <hr>
+                                            @endforeach
+                                        </td>
+                                        <td>{{number_format($b->total)}}</td>
+                                        <td>
+                                            @if($b->status==1)
+                                            <p>Chuyển sang đã giao</p>
+                                            <p>Huỷ Đơn hàng</p>
+                                            @endif
+
+                                        </td>
                                     </tr>
-                                    $endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -52,4 +78,13 @@
         </section>
     </div>
 </section>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.example').DataTable({
+            "pageLength": 5
+        });
+    } );
+</script>
 @endsection

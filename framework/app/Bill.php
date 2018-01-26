@@ -15,5 +15,13 @@ class Bill extends Model
     function Customer(){
         return $this->belongsTo('App\Customer','id_customer','id');
     }
+    function Foods(){
+         return $this->belongsToMany(
+            'App\Food',
+            'bill_detail', 
+            'id_bill',
+            'id_food'
+        );
+    }
     
 }

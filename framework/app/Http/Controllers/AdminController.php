@@ -199,11 +199,11 @@ class AdminController extends Controller
     function getManageBill(){
 
         $chuaGiao = Bill::where('status',1)
-                    ->with('BillDetail')->get();
+                    ->with('Customer','BillDetail','Foods')->get();
         $daGiao = Bill::where('status',2)
-                    ->with('BillDetail')->get();
+                    ->with('Customer','BillDetail','Foods')->get();
         $chuaXacNhan = Bill::where('status',0)
-                    ->with('BillDetail')->get();
+                    ->with('Customer','BillDetail','Foods')->get();
         $bills = [$chuaXacNhan,$chuaGiao,$daGiao];
         //$bills = Bill::with('BillDetail')->get();
 

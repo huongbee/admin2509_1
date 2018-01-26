@@ -197,13 +197,17 @@ class AdminController extends Controller
     }
 
     function getManageBill(){
+
         $chuaGiao = Bill::where('status',1)
                     ->with('BillDetail')->get();
         $daGiao = Bill::where('status',2)
                     ->with('BillDetail')->get();
         $chuaXacNhan = Bill::where('status',0)
                     ->with('BillDetail')->get();
-        return view('pages/manage-bill',compact('chuaGiao','daGiao','chuaXacNhan'));
+        $bills = [$chuaXacNhan,$chuaGiao,$daGiao];
+        //$bills = Bill::with('BillDetail')->get();
+
+        return view('pages/manage-bill',compact('bills'));
     }
 
 }

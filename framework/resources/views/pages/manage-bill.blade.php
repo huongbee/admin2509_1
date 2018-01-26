@@ -9,33 +9,42 @@
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-tabs nav-justified">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Đơn hàng chưa giao</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Đơn hàng chưa xác nhận</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">đơn hàng đã hoàn thành</a>
-                        </li>
+                        @for($i=0;$i
+                        <3;$i++) <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel{{$i}}" role="tab">
+                                @if($i==0) Đơn hàng chưa xác nhận @elseif($i==1) Đơn hàng chưa giao @else Đơn hàng đã hoàn thành @endif
+                            </a>
+                            </li>
+                            @endfor
+
                     </ul>
                     <!-- Tab panels -->
                     <div class="tab-content card">
-                        <!--Panel 1-->
-                        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-                            Đơn hàng chưa giao
+                        @foreach($bills as $key=>$bill)
+                        <div class="tab-pane fade in" id="panel{{$key}}" role="tabpanel">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Email</th>
+                                        <th>Sản phẩm - Đơn giá</th>
+                                        <th>Hình</th>
+                                        <th>Chuyển trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $stt =1?> @foreach($bill as $b)
+                                    <tr>
+                                        <td>{{$stt++}}</td>
+                                        <td>Doe</td>
+                                        <td>john@example.com</td>
+                                    </tr>
+                                    $endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <!--/.Panel 1-->
-                        <!--Panel 2-->
-                        <div class="tab-pane fade" id="panel2" role="tabpanel">
-                            Đơn hàng chưa xác nhận
-                        </div>
-                        <!--/.Panel 2-->
-                        <!--Panel 3-->
-                        <div class="tab-pane fade" id="panel3" role="tabpanel">
-                            đơn hàng đã hoàn thành
-                        </div>
-                        <!--/.Panel 3-->
+                        @endforeach
                     </div>
 
                 </div>

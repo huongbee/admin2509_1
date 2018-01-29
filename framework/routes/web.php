@@ -88,6 +88,17 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>"update-status"
     ]);
     //https://github.com/huongnguyen08/php4
+    /**
+     * 
+     * CREATE TABLE `social_provider` (
+        `id` int(11) NOT NULL,
+        `provider_id` varchar(100) DEFAULT NULL,
+        `email` varchar(100) DEFAULT NULL,
+        `provider` varchar(100) DEFAULT NULL,
+        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+        )
+     */
 
 });
 

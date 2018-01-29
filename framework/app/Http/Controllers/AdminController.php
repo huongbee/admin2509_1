@@ -223,4 +223,8 @@ class AdminController extends Controller
             echo 'error';
         }
     }   
+
+    function getFormLogin(){
+        return view('admin/login');
+    }
 }

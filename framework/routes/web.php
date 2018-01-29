@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('admin-login',[
+    'uses'=>'AdminController@getFormLogin',
+    'as'=>'admin-login'
+]);
+
+//http://localhost/admin2509/admin/login/google/callback
+Route::get('admin/login/google/callback',[
+    'uses'=>'AdminController@handleProviderCallback',
+    'as'=>'login-callback'
+]);
+
 Route::group(['prefix'=>'admin'],function(){
 
     // admin/type
@@ -87,6 +98,9 @@ Route::group(['prefix'=>'admin'],function(){
         'uses'=>"AdminController@updateBillStatus",
         'as'=>"update-status"
     ]);
+
+
+
     //https://github.com/huongnguyen08/php4
     /**
      * 
@@ -99,6 +113,7 @@ Route::group(['prefix'=>'admin'],function(){
         `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
         )
      */
+    //http://localhost/admin2509/admin/login/google/callback
 
 });
 

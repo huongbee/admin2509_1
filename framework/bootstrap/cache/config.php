@@ -40,6 +40,7 @@
       23 => 'App\\Providers\\AuthServiceProvider',
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
+      26 => 'Laravel\\Socialite\\SocialiteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -76,6 +77,7 @@
       'URL' => 'Illuminate\\Support\\Facades\\URL',
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
+      'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
     ),
   ),
   'auth' => 
@@ -385,6 +387,12 @@
       'model' => 'App\\User',
       'key' => NULL,
       'secret' => NULL,
+    ),
+    'google' => 
+    array (
+      'client_id' => '696025184931-5b0skcm0edbh6t4a2hm169rp6hj9n287.apps.googleusercontent.com',
+      'client_secret' => 'gAJPAVMwnQtHXhYzlzn2OXNi',
+      'redirect' => 'http://localhost/admin2509/admin/login/google/callback',
     ),
   ),
   'session' => 

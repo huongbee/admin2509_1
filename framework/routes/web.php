@@ -83,6 +83,11 @@ Route::group(['prefix'=>'admin'],function(){
         'as'=>"manageBill"
     ]);
 
+    Route::post('update-status',[
+        'uses'=>"AdminController@updateBillStatus",
+        'as'=>"update-status"
+    ]);
+
 
 });
 

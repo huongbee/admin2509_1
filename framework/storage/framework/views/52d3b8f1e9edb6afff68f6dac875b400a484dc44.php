@@ -9,6 +9,12 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo e(route('manageBill')); ?>">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Quản lý đơn hàng</span>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo e(route('addType')); ?>" >
                     <i class="fa fa-map-marker"></i>
                     <span>Thêm loại sản phẩm</span>

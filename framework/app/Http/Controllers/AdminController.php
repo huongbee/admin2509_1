@@ -209,5 +209,18 @@ class AdminController extends Controller
 
         return view('pages/manage-bill',compact('bills'));
     }
-//delete from bills where id not in(select distinct(id_bill) from bill_detail)
+    //delete from bills where id not in(select distinct(id_bill) from bill_detail)
+    function updateBillStatus(Request $req){
+        $id = $req->id;
+        $status = $req->status;
+        $bill = Bill::where('id',$id)->first();
+        if($bill){
+            $bill->status = $status;
+            $bill->save();
+            echo "success";
+        }
+        else{
+            echo 'error';
+        }
+    }   
 }

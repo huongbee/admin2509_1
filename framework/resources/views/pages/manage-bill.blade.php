@@ -60,8 +60,10 @@
                                         <td>{{number_format($b->total)}}</td>
                                         <td>
                                             @if($b->status==1)
-                                            <p>Chuyển sang đã giao</p>
-                                            <p>Huỷ Đơn hàng</p>
+                                            <p class="btn btn-success btnUpdate" dataid="{{$b->id}}">Chuyển sang đã giao</p>
+
+                                            <br><br>
+                                            <p class="btn btn-primary btnCancel" dataid="{{$b->id}}">Huỷ Đơn hàng</p>
                                             @endif
 
                                         </td>
@@ -82,9 +84,32 @@
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
+
+        $('.btnUpdate').click(function(){
+            
+            var id = $(this).attr('dataid')
+            var status = 2
+            $.ajax({
+                url:"{{route('update-status')}}",
+                data:{ 
+                    id : id,
+                    status: status,
+                    _token : "{{csrf_token()}}"
+                },
+                type:"POST",
+                success:function(data){
+                    alert('Updated!')
+                }
+            })
+        })
+
         $('.example').DataTable({
             "pageLength": 5
         });
+
+        
+
+
     } );
 </script>
 @endsection

@@ -98,7 +98,35 @@
                 },
                 type:"POST",
                 success:function(data){
-                    alert('Updated!')
+                    if($.trim(data)=='success'){
+                        alert('Updated')
+                        window.location.reload();
+                    }
+                    else{
+                        alert('try again!')
+                    }
+                }
+            })
+        })
+        $('.btnCancel').click(function(){
+            var id = $(this).attr('dataid')
+            var status = 3
+            $.ajax({
+                url:"{{route('update-status')}}",
+                data:{ 
+                    id : id,
+                    status: status,
+                    _token : "{{csrf_token()}}"
+                },
+                type:"POST",
+                success:function(data){
+                    if($.trim(data)=='success'){
+                        alert('Updated')
+                        window.location.reload();
+                    }
+                    else{
+                        alert('try again!')
+                    }
                 }
             })
         })

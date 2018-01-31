@@ -31,38 +31,54 @@ Route::get('admin/login/{provider}/callback',[
     'as'=>'login-callback'
 ]);
 
-Route::group(['prefix'=>'admin'],function(){
-
+Route::group([
+    'prefix'=>'admin',
+    'middleware'=>'checkAdmin'
+],function(){
     // admin/type
-    Route::get('/type',[
-        'uses'=>'AdminController@getListType',
-        'as'=>'list_type'
-    ]);
+    Route::group(['middleware'=>'isAdmin'],function(){
+        Route::get('/type',[
+            'uses'=>'AdminController@getListType',
+            'as'=>'list_type'
+        ]);
 
-    Route::get('add-type',[
-        'uses'=>'AdminController@getAddType',
-        'as'=>'addType'
-    ]);
-    
-    Route::post('add-type',[
-        'uses'=>'AdminController@postAddType',
-        'as'=>'addType'
-    ]);
-    Route::get('edit-type-{id}',[
-        'uses'=>'AdminController@getEditType',
-        'as'=>'editType'
-    ]);
-    
-    Route::post('edit-type-{id}',[
-        'uses'=>'AdminController@postEditType',
-        'as'=>'editType'
-    ]);
+        Route::get('add-type',[
+            'uses'=>'AdminController@getAddType',
+            'as'=>'addType'
+        ]);
+        
+        Route::post('add-type',[
+            'uses'=>'AdminController@postAddType',
+            'as'=>'addType'
+        ]);
+        Route::get('edit-type-{id}',[
+            'uses'=>'AdminController@getEditType',
+            'as'=>'editType'
+        ]);
+        
+        Route::post('edit-type-{id}',[
+            'uses'=>'AdminController@postEditType',
+            'as'=>'editType'
+        ]);
 
-    Route::get('delete',[
-        'uses'=>'AdminController@getDeleteType',
-        'as' => 'deleteType'
-    ]);
+        Route::get('delete',[
+            'uses'=>'AdminController@getDeleteType',
+            'as' => 'deleteType'
+        ]);
 
+        //admin
+        Route::get('manage-bill',[
+            'uses'=>'AdminController@getManageBill',
+            'as'=>"manageBill"
+        ]);
+
+        Route::post('update-status',[
+            'uses'=>"AdminController@updateBillStatus",
+            'as'=>"update-status"
+        ]);
+    });
+
+    //user
     Route::get('product-{id_type}',[
         'uses'=>'AdminController@getProductByType',
         'as'=>'list_product'
@@ -93,32 +109,12 @@ Route::group(['prefix'=>'admin'],function(){
         'uses'=>'AdminController@postEditFood',
         'as'=>'editFood'
     ]);
+    
 
-    Route::get('manage-bill',[
-        'uses'=>'AdminController@getManageBill',
-        'as'=>"manageBill"
+    Route::get('logout',[
+        'uses'=>"AdminController@logout",
+        'as'=>'logout'
     ]);
-
-    Route::post('update-status',[
-        'uses'=>"AdminController@updateBillStatus",
-        'as'=>"update-status"
-    ]);
-
-
-
-    //https://github.com/huongnguyen08/php4
-    /**
-     * 
-     * CREATE TABLE `social_provider` (
-        `id` int(11) NOT NULL,
-        `provider_id` varchar(100) DEFAULT NULL,
-        `email` varchar(100) DEFAULT NULL,
-        `provider` varchar(100) DEFAULT NULL,
-        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-        )
-     */
-    //http://localhost/admin2509/admin/login/google/callback
-
 });
 
+// /https://developers.facebook.com/docs/plugins/comments

@@ -11,6 +11,7 @@ use App\Bill;
 use Socialite;
 use App\SocialProvider;
 use App\User;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -270,5 +271,9 @@ class AdminController extends Controller
         
         Auth()->login($user,true);
         return redirect()->route('list_type')->with(['message'=>"Đăng nhập thành công"]);
+    }
+    function logout(){
+        Auth::logout();
+        return redirect()->route('admin-login');
     }
 }

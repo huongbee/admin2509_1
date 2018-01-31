@@ -8,6 +8,8 @@
                     <span>Home</span>
                 </a>
             </li>
+            
+            <?php if(Auth::user()->role==1): ?> 
             <li>
                 <a href="<?php echo e(route('manageBill')); ?>">
                     <i class="fa fa-dashboard"></i>
@@ -26,6 +28,8 @@
                     <span>Danh sách loại</span>
                 </a>
             </li>
+            <?php endif; ?>
+            
             <li>
                 <a href="<?php echo e(route('addFood')); ?>" >
                     <i class="fa fa-map-marker"></i>

@@ -50,6 +50,7 @@
                     {{$products->links()}}
                 </div>
             </div>
+                    
         </section>
     </div>
 </section>

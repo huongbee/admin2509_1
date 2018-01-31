@@ -117,4 +117,4 @@ Route::group([
     ]);
 });
 
-// /https://developers.facebook.com/docs/plugins/comments
+// /https://developers.facebook.com/docs/plugins/comment

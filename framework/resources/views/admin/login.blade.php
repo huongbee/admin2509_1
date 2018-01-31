@@ -28,8 +28,8 @@
                             <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
+                    <div class="form-group row  justify-content-end">
+                        <div class="col-sm-2">
                             <button class="btn btn-success">Login</button>
                         </div>
                     </div>
@@ -40,7 +40,9 @@
                         <button class="btn btn-primary" style="width:100%">Login Facebook</button>
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-danger" style="width:100%">Login Google</button>
+                        <a href="{{route('redirect-to-provider')}}">
+                            <button class="btn btn-danger" style="width:100%">Login Google</button>
+                        </a>
                     </div>
                 </div>
             </div>

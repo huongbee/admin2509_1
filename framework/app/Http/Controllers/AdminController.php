@@ -8,6 +8,9 @@ use App\Food;
 use App\PageUrl;
 use App\Functions;
 use App\Bill;
+use Socialite;
+use App\SocialProvider;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -226,5 +229,41 @@ class AdminController extends Controller
 
     function getFormLogin(){
         return view('admin/login');
+    }
+    function redirectToProvider(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallback(){
+        try{
+            $socialUser = Socialite::driver('google')->user();
+        }
+        catch(\Exception $e){
+            return redirect()->route('admin-login')->with(['message'=>"Đăng nhập không thành công"]);
+        }
+        $socialProvider = SocialProvider::where('provider_id',$socialUser->getId())->first();
+        if(!$socialProvider){
+            //tạo mới
+            $user = User::where('email',$socialUser->getEmail())->first();
+            if($user){
+                return redirect()->route('admin-login')->with(['flash_level'=>'danger','flash_message'=>"Email đã có người sử dụng"]);
+            }
+            else{
+                $user = new User();
+                $user->email = $socialUser->getEmail();
+                $user->fullname = $socialUser->getName();
+                $user->save();
+            }
+            $provider = new SocialProvider();
+            $provider->provider_id = $socialUser->getId();
+            $provider->provider ='google';
+            $provider->email = $socialUser->getEmail();
+            $provider->save();
+        }
+        else{
+            $user = User::where('email',$socialUser->getEmail())->first();
+        }
+        Auth()->login($user);
+        return redirect()->route('list_type')->with(['message'=>"Đăng nhập thành công"]);
     }
 }

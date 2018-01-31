@@ -20,13 +20,13 @@ Route::get('admin-login',[
     'as'=>'admin-login'
 ]);
 
-Route::get('admin/login/google',[
+Route::get('admin/login/{provider}',[
     'uses'=>'AdminController@redirectToProvider',
     'as'=>'redirect-to-provider'
 ]);
 
 //http://localhost/admin2509/admin/login/google/callback
-Route::get('admin/login/google/callback',[
+Route::get('admin/login/{provider}/callback',[
     'uses'=>'AdminController@handleProviderCallback',
     'as'=>'login-callback'
 ]);

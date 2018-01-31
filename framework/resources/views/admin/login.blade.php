@@ -15,6 +15,9 @@
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <h2 style="margin-top:50px"> Admin Login </h2>
+                @if(Session::has('flash_message'))
+                    <div class="alert alert-danger">{{Session::get('flash_message')}}</div>
+                    @endif
                 <form>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -37,10 +40,12 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
+                        <a href="{{route('redirect-to-provider','facebook')}}">
                         <button class="btn btn-primary" style="width:100%">Login Facebook</button>
+                        </a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="{{route('redirect-to-provider')}}">
+                        <a href="{{route('redirect-to-provider','google')}}">
                             <button class="btn btn-danger" style="width:100%">Login Google</button>
                         </a>
                     </div>

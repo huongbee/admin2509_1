@@ -230,23 +230,24 @@ class AdminController extends Controller
     function getFormLogin(){
         return view('admin/login');
     }
-    function redirectToProvider(){
-        return Socialite::driver('google')->redirect();
+    function redirectToProvider($provider){
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback(){
+    public function handleProviderCallback($provider){
         try{
-            $socialUser = Socialite::driver('google')->user();
+            $socialUser = Socialite::driver($provider)->user();
         }
         catch(\Exception $e){
             return redirect()->route('admin-login')->with(['message'=>"Đăng nhập không thành công"]);
         }
-        $socialProvider = SocialProvider::where('provider_id',$socialUser->getId())->first();
+        $socialProvider = SocialProvider::where('provider_id',                              $socialUser->getId())->first();
         if(!$socialProvider){
             //tạo mới
             $user = User::where('email',$socialUser->getEmail())->first();
+            //dd($user);
             if($user){
-                return redirect()->route('admin-login')->with(['flash_level'=>'danger','flash_message'=>"Email đã có người sử dụng"]);
+                return redirect()->route('admin-login')->with(['flash_message'=>"Email đã có người sử dụng"]);
             }
             else{
                 $user = new User();
@@ -254,16 +255,20 @@ class AdminController extends Controller
                 $user->fullname = $socialUser->getName();
                 $user->save();
             }
-            $provider = new SocialProvider();
-            $provider->provider_id = $socialUser->getId();
-            $provider->provider ='google';
-            $provider->email = $socialUser->getEmail();
-            $provider->save();
+
+            $providers = new SocialProvider();
+            $providers->provider_id = $socialUser->getId();
+            $providers->provider =$provider;
+            $providers->email = $socialUser->getEmail();
+            // echo $socialUser->getEmail();
+            // die;
+            $providers->save();
         }
         else{
             $user = User::where('email',$socialUser->getEmail())->first();
         }
-        Auth()->login($user);
+        
+        Auth()->login($user,true);
         return redirect()->route('list_type')->with(['message'=>"Đăng nhập thành công"]);
     }
 }

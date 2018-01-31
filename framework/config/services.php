@@ -40,5 +40,10 @@ return [
         'client_secret' => 'gAJPAVMwnQtHXhYzlzn2OXNi', 
         'redirect' => 'http://localhost/admin2509/admin/login/google/callback',
     ],
+    'facebook' => [
+        'client_id' => '171451653474960', 
+        'client_secret' => '24e23818cbb180d40044abd4ca0279db', 
+        'redirect' => 'http://localhost/admin2509/admin/login/facebook/callback',
+    ],
 
 ];
